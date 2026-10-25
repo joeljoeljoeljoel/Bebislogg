@@ -1,0 +1,135 @@
+/* Design tokens. Dark (night) is the base from Nocturne; light (day) overrides it.
+   The theme is set as data-theme on <html>, before first paint (see index.html). */
+
+:root,
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-bg: #161826;
+  --color-surface: #232532;
+  --color-text: #e9e9ed;
+  --color-accent: #9184d9;
+  --color-divider: color-mix(in srgb, #e9e9ed 16%, transparent);
+
+  --color-neutral-100: #f3f5fe;
+  --color-neutral-200: #e4e7f5;
+  --color-neutral-300: #cfd3e5;
+  --color-neutral-400: #b2b6ca;
+  --color-neutral-500: #9397ab;
+  --color-neutral-600: #75798c;
+  --color-neutral-700: #595d6c;
+  --color-neutral-800: #3f424d;
+  --color-neutral-900: #292b31;
+
+  --color-accent-100: #f5f4ff;
+  --color-accent-200: #e7e5fe;
+  --color-accent-300: #d2cefd;
+  --color-accent-400: #b5abfc;
+  --color-accent-500: #968ae0;
+  --color-accent-600: #796cbf;
+  --color-accent-700: #5d5294;
+  --color-accent-800: #423a6a;
+  --color-accent-900: #2b2741;
+
+  --shadow-sm: 0 0 0 1px #3f424d;
+  --shadow-md: 0 0 0 1px #595d6c, 0 6px 18px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 0 0 1px #9397ab, 0 16px 40px rgba(0, 0, 0, 0.65);
+
+  --bl-sleep: #9184d9;
+  --bl-sleep-day: #5d5294;
+  --bl-feed: #e2b48e;
+  --bl-feed-dim: #4a3b33;
+  --bl-feed-ink: #f4dcc8;
+  --bl-bottle: #e8a0a8;
+  --bl-bottle-dim: #4a3236;
+  --bl-vitd: #e8c66a;
+  --bl-vitd-dim: #47402a;
+  --bl-awake: #d8cfbf;
+  --bl-ring: #292b31;
+  --bl-grid: rgba(233, 233, 237, 0.09);
+  --bl-muted: #9397ab;
+  --bl-night: rgba(145, 132, 217, 0.09);
+  --bl-tint-sleep: rgba(145, 132, 217, 0.08);
+  --bl-glow-sleep: rgba(145, 132, 217, 0.2);
+  --bl-tint-feed: rgba(226, 180, 142, 0.1);
+  --bl-tint-bottle: rgba(232, 160, 168, 0.1);
+  --bl-tint-vitd: rgba(232, 198, 106, 0.07);
+  --bl-tint-awake: rgba(216, 207, 191, 0.06);
+  --bl-glow-awake: rgba(216, 207, 191, 0.08);
+  --bl-card-end: #1c1e2c;
+  --bl-scrim: rgba(10, 11, 18, 0.62);
+  --bl-hover: rgba(233, 233, 237, 0.07);
+}
+
+:root[data-theme='light'] {
+  color-scheme: light;
+
+  --color-bg: #f6f1ea;
+  --color-surface: #fdfaf5;
+  --color-text: #26222f;
+  --color-accent: #6a4fd0;
+  --color-divider: rgba(38, 34, 47, 0.14);
+
+  --color-neutral-100: #2a2633;
+  --color-neutral-200: #3a3544;
+  --color-neutral-300: #4b4656;
+  --color-neutral-400: #5e5868;
+  --color-neutral-500: #6d6777;
+  --color-neutral-600: #8c8694;
+  --color-neutral-700: #c8c0c6;
+  --color-neutral-800: #e4dcd8;
+  --color-neutral-900: #ede6e0;
+
+  --color-accent-100: #3d2a86;
+  --color-accent-200: #4a349e;
+  --color-accent-300: #5a40b8;
+  --color-accent-400: #7b62db;
+  --color-accent-500: #6a4fd0;
+  --color-accent-600: #5a40b8;
+  --color-accent-700: #b8a9ef;
+  --color-accent-800: #e1d9fb;
+  --color-accent-900: #efeafd;
+
+  --shadow-sm: 0 0 0 1px #e4dcd8;
+  --shadow-md: 0 0 0 1px #dcd3cf, 0 8px 24px rgba(70, 45, 30, 0.12);
+  --shadow-lg: 0 0 0 1px #d4cbc6, 0 16px 40px rgba(70, 45, 30, 0.16);
+
+  --bl-sleep: #6a4fd0;
+  --bl-sleep-day: #b8a9ef;
+  --bl-feed: #e06a12;
+  --bl-feed-dim: #fde4cf;
+  --bl-feed-ink: #8f3f05;
+  --bl-bottle: #c8456a;
+  --bl-bottle-dim: #fbe0e7;
+  --bl-vitd: #a37a00;
+  --bl-vitd-dim: #f8eccb;
+  --bl-awake: #8f6a35;
+  --bl-ring: #ebe3dc;
+  --bl-grid: rgba(38, 34, 47, 0.08);
+  --bl-muted: #6d6777;
+  --bl-night: rgba(106, 79, 208, 0.07);
+  --bl-tint-sleep: rgba(106, 79, 208, 0.07);
+  --bl-glow-sleep: rgba(106, 79, 208, 0.14);
+  --bl-tint-feed: rgba(224, 106, 18, 0.09);
+  --bl-tint-bottle: rgba(200, 69, 106, 0.08);
+  --bl-tint-vitd: rgba(163, 122, 0, 0.07);
+  --bl-tint-awake: rgba(143, 106, 53, 0.07);
+  --bl-glow-awake: rgba(143, 106, 53, 0.1);
+  --bl-card-end: #f2ebe2;
+  --bl-scrim: rgba(38, 34, 47, 0.35);
+  --bl-hover: rgba(38, 34, 47, 0.06);
+}
+
+:root {
+  --font: -apple-system, system-ui, 'Roboto', sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 14px;
+
+  /* Safe areas. Top: under the status bar / Dynamic Island. Bottom: the tab bar
+     is 82 px on an iPhone with a home indicator, as in the design. */
+  --safe-top: max(env(safe-area-inset-top, 0px), 8px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+  --tabbar-h: calc(56px + max(calc(var(--safe-bottom) - 8px), 12px));
+}

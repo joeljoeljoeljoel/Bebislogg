@@ -1,18 +1,44 @@
 <!doctype html>
-<html lang="sv">
+<html lang="sv" data-theme="dark">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta name="theme-color" content="#161826" />
-    <meta name="color-scheme" content="dark light" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Bebislogg" />
     <title>Bebislogg</title>
     <style>
-      html, body { margin: 0; background: #161826; }
+      html { background: #161826; }
+      html[data-theme='light'] { background: #f6f1ea; }
     </style>
+    <script>
+      // Pick the theme before first paint so the app never flashes bright at night.
+      // Mirrors resolveTheme() in src/domain/settings.ts; the settings come from a
+      // localStorage copy written by src/theme/theme.ts.
+      (function () {
+        var theme = 'dark';
+        try {
+          var s = JSON.parse(localStorage.getItem('bebislogg-theme') || '{}') || {};
+          var min = function (v, d) {
+            var p = String(v || d).split(':');
+            return +p[0] * 60 + +p[1];
+          };
+          if (s.theme === 'Ljust') theme = 'light';
+          else if (s.theme !== 'Mörkt') {
+            var a = min(s.nightStart, '19:00');
+            var b = min(s.nightEnd, '07:00');
+            var now = new Date();
+            var x = now.getHours() * 60 + now.getMinutes();
+            var night = a > b ? x >= a || x < b : x >= a && x < b;
+            theme = night ? 'dark' : 'light';
+          }
+        } catch (e) {}
+        document.documentElement.dataset.theme = theme;
+        document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#161826' : '#f6f1ea';
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>

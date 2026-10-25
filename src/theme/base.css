@@ -1,0 +1,260 @@
+/* Base styles and the Nocturne component classes, using the system font. */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  background: var(--color-bg);
+  transition: background-color 0.4s;
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font);
+  font-size: 15px;
+  line-height: 1.55;
+  font-variant-numeric: tabular-nums;
+  overscroll-behavior: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: background-color 0.4s;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 500;
+  line-height: 1.12;
+  letter-spacing: -0.015em;
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+  color: inherit;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:focus {
+  outline: none;
+}
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
+::selection {
+  background: color-mix(in srgb, var(--color-accent) 30%, transparent);
+}
+
+/* — buttons — */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.2;
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid transparent;
+  padding: 5.6px 10px;
+  border-radius: var(--radius-md);
+}
+.btn svg {
+  display: block;
+  flex: none;
+}
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+.btn-primary {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+}
+.btn-primary:active {
+  background: color-mix(in srgb, var(--color-accent) 22%, transparent);
+}
+.btn-secondary {
+  border-color: var(--color-divider);
+}
+.btn-secondary:active {
+  background: color-mix(in srgb, var(--color-text) 14%, transparent);
+}
+.btn-ghost {
+  color: var(--color-accent);
+  padding-inline: 2.8px;
+}
+.btn-ghost:active {
+  background: color-mix(in srgb, var(--color-accent) 18%, transparent);
+}
+.btn-icon {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+.btn-block {
+  width: 100%;
+}
+@media (hover: hover) {
+  .btn-primary:hover {
+    background: color-mix(in srgb, var(--color-accent) 12%, transparent);
+  }
+  .btn-secondary:hover {
+    background: color-mix(in srgb, var(--color-text) 7%, transparent);
+  }
+  .btn-ghost:hover {
+    background: color-mix(in srgb, var(--color-accent) 10%, transparent);
+  }
+}
+
+/* — forms — */
+.field > label {
+  display: block;
+  font-size: 12px;
+  margin-bottom: 5px;
+  color: color-mix(in srgb, var(--color-text) 70%, transparent);
+}
+.input {
+  width: 100%;
+  min-height: 36px;
+  padding: 6px 10px;
+  font: inherit;
+  /* At least 16 px, or iOS zooms in when the field is focused */
+  font-size: 16px;
+  color: var(--color-text);
+  caret-color: var(--color-accent);
+  background: var(--color-surface);
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+.input:focus-visible {
+  border-color: var(--color-accent);
+  outline-offset: 0;
+}
+/* iOS centers date and time values and sizes the field to its content */
+.input[type='date'],
+.input[type='time'] {
+  -webkit-appearance: none;
+  appearance: none;
+  min-width: 0;
+}
+.input::-webkit-date-and-time-value {
+  text-align: left;
+}
+.seg {
+  display: inline-flex;
+  overflow: hidden;
+  border: 1px solid var(--color-divider);
+  border-radius: var(--radius-md);
+}
+.seg-opt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 12px;
+  font-size: 13px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+}
+.seg-opt + .seg-opt {
+  border-left: 1px solid var(--color-divider);
+}
+.seg-opt[aria-pressed='true'] {
+  color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent);
+}
+
+/* — cards — */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 5.6px;
+  padding: 8.4px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.card-kicker {
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+}
+
+/* — tags — */
+.tag {
+  display: inline-flex;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.02em;
+  padding: 3px 10px;
+  border-radius: 6px;
+}
+
+/* — tables — */
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+.table th {
+  text-align: left;
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--color-text) 60%, transparent);
+  padding: 5.6px;
+}
+.table td {
+  padding: 5.6px;
+}
+.table thead tr {
+  background: linear-gradient(
+      to right,
+      transparent,
+      var(--color-divider) 48px,
+      var(--color-divider) calc(100% - 48px),
+      transparent
+    )
+    no-repeat bottom / 100% 1px;
+}
+.table tbody tr {
+  background: linear-gradient(
+      to right,
+      transparent,
+      color-mix(in srgb, var(--color-text) 8%, transparent) 48px,
+      color-mix(in srgb, var(--color-text) 8%, transparent) calc(100% - 48px),
+      transparent
+    )
+    no-repeat bottom / 100% 1px;
+}
+
+/* — rules fade out 48 px at each end (a Nocturne signature) — */
+.hr {
+  height: 1px;
+  border: 0;
+  margin: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--color-divider) 48px,
+    var(--color-divider) calc(100% - 48px),
+    transparent
+  );
+}

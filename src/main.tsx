@@ -1,9 +1,27 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
+import './theme/tokens.css';
+import './theme/base.css';
 import { App } from './App';
+import { isStandalone } from './platform';
+import { StoreProvider, loadInitialData } from './state/store';
 
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-);
+async function start() {
+  if (import.meta.env.DEV) {
+    const { applyDevParams } = await import('./dev/devParams');
+    await applyDevParams();
+  }
+  const initial = await loadInitialData();
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <StoreProvider initial={initial}>
+        <App />
+      </StoreProvider>
+    </StrictMode>,
+  );
+  // Ask the browser not to evict the data. Only when installed: in a browser tab
+  // some browsers would ask the user.
+  if (isStandalone()) void navigator.storage?.persist?.();
+}
+
+void start();

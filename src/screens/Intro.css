@@ -1,0 +1,109 @@
+.intro {
+  position: absolute;
+  inset: 0;
+  z-index: 26;
+  background: var(--color-bg);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: calc(var(--safe-top) + 16px) 22px calc(40px + var(--safe-bottom));
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.intro-head {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.intro-head h2 {
+  font-size: 28px;
+}
+.intro-head p {
+  font-size: 15px;
+  color: var(--color-neutral-300);
+  text-wrap: pretty;
+}
+
+.intro .input {
+  min-height: 48px;
+  font-size: 17px;
+}
+
+.intro-modes {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.intro-label {
+  font-size: 13px;
+  color: var(--color-neutral-300);
+}
+.intro-mode {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 62px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-neutral-800);
+  background: transparent;
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+}
+.intro-mode[aria-checked='true'] {
+  border-color: var(--color-accent);
+  background: var(--color-accent-900);
+}
+.intro-mode svg {
+  flex: none;
+}
+.intro-mode-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  line-height: 1.3;
+}
+.intro-mode-title {
+  font-size: 16px;
+}
+.intro-mode-desc {
+  font-size: 13px;
+  color: var(--color-neutral-400);
+}
+.intro-mode-check {
+  color: var(--color-accent);
+}
+
+.intro-night {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-neutral-400);
+}
+.intro-help {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--color-neutral-400);
+}
+
+.intro-start {
+  min-height: 54px;
+  font-size: 17px;
+  margin-top: 4px;
+}
+.intro-restore {
+  min-height: 44px;
+  align-self: center;
+  padding-inline: 10px;
+  color: var(--color-neutral-300);
+}
+.intro-error {
+  margin-top: -8px;
+  text-align: center;
+  font-size: 13px;
+  color: var(--color-neutral-300);
+}

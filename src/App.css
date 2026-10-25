@@ -1,0 +1,47 @@
+/* The app fills the viewport on a phone; on a wider screen it stays phone-sized in the middle. */
+.app {
+  position: fixed;
+  inset: 0;
+  max-width: 480px;
+  margin: 0 auto;
+  overflow: hidden;
+  background: var(--color-bg);
+  transition: background-color 0.4s;
+}
+@media (min-width: 481px) {
+  .app {
+    box-shadow: 0 0 0 1px var(--color-divider);
+  }
+}
+
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: var(--tabbar-h);
+  padding-top: var(--safe-top);
+}
+
+/* Scrolling tabs (Dagbok, Insikter). The bottom padding leaves room for the undo bar. */
+.scroll-screen {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: 4px 16px 110px;
+}
+
+.screen-title {
+  font-size: 28px;
+}
+
+.placeholder {
+  color: var(--color-neutral-400);
+  font-size: 14px;
+}
+
+.app-icon {
+  display: block;
+  flex: none;
+  box-shadow: 0 0 0 1px var(--color-neutral-800);
+}
