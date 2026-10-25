@@ -1,0 +1,67 @@
+.settings {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.settings .input {
+  min-height: 44px;
+}
+.settings-night {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--color-neutral-400);
+}
+.settings-help {
+  display: block;
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--color-neutral-400);
+}
+
+.seg-full {
+  display: flex;
+}
+.seg-full .seg-opt {
+  flex: 1;
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 14px;
+}
+
+.backup {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 14px;
+  border-radius: 12px;
+  background: var(--color-bg);
+}
+.backup-title {
+  font-size: 15px;
+  font-weight: 500;
+}
+.backup-text {
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--color-neutral-300);
+  text-wrap: pretty;
+}
+.backup-last {
+  font-size: 13px;
+  color: var(--color-neutral-400);
+}
+.backup-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 4px;
+}
+.backup-actions .btn {
+  min-height: 44px;
+  padding: 0 14px;
+}
+.backup-error {
+  font-size: 13px;
+  color: var(--color-neutral-300);
+}

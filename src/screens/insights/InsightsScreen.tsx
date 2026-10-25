@@ -18,6 +18,7 @@ import {
 import { insights } from '../../domain/insights';
 import { median } from '../../domain/time';
 import { cap } from '../../domain/wording';
+import { Seg } from '../../components/Seg';
 import { useStore } from '../../state/store';
 import { useModel } from '../../state/useModel';
 import { VitdCard } from './VitdCard';
@@ -37,7 +38,7 @@ export function InsightsScreen({ now }: { now: number }) {
   const cards = useMemo(() => insights(m), [m]);
   const { one, many } = m.words;
   // The app does not know the baby's gender, so questions use the name.
-  const name = settings.name || 'bebisen';
+  const name = settings.name.trim() || 'bebisen';
 
   const feedLegend: LegendItem[] = [
     ...(m.useBreast ? [{ label: 'Amning', color: C.feed }] : []),
@@ -61,13 +62,7 @@ export function InsightsScreen({ now }: { now: number }) {
     <div className="scroll-screen insights">
       <div className="insights-head">
         <h2>Insikter</h2>
-        <div className="seg">
-          {PERIODS.map(([p, label]) => (
-            <button key={p} type="button" className="seg-opt" aria-pressed={period === p} onClick={() => setPeriod(p)}>
-              {label}
-            </button>
-          ))}
-        </div>
+        <Seg label="Period" options={PERIODS} value={period} onChange={setPeriod} />
       </div>
 
       {cards.map((c) => (

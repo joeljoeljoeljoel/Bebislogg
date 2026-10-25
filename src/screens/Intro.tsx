@@ -2,7 +2,7 @@ import { type ChangeEvent, useRef, useState } from 'react';
 import { CheckCircle, DownloadSimple, Drop, DropHalf, DropHalfBottom, type Icon } from '@phosphor-icons/react';
 import type { FeedMode, Settings } from '../domain/types';
 import { dateStr } from '../domain/time';
-import { parseBackup } from '../db/backup';
+import { readBackup } from '../db/files';
 import { AppIcon } from '../components/AppIcon';
 import { clockNow } from '../state/clock';
 import { useStore } from '../state/store';
@@ -48,7 +48,7 @@ export function Intro() {
     const file = e.target.files?.[0];
     e.target.value = '';
     if (!file) return;
-    const data = parseBackup(await file.text(), clockNow());
+    const data = await readBackup(file, clockNow());
     setRestoreFailed(!data);
     if (data) restore(data);
   }

@@ -28,7 +28,7 @@ export function NowScreen({ now }: { now: number }) {
     <div className="now">
       <header className="now-head">
         <div className="now-who">
-          <span className="now-name">{settings.name || 'Bebis'}</span>
+          <span className="now-name">{settings.name.trim() || 'Bebis'}</span>
           <span className="now-age">{ageText(settings.birth, now)}</span>
         </div>
         {backupAge > 7 * DAY && (
