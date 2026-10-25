@@ -1,0 +1,98 @@
+.guide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  background: var(--color-bg);
+}
+.guide-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  padding: 12px 28px 24px;
+}
+/* In Safari the page starts below the status bar; leave the same air as the design. */
+.guide-body-ios {
+  padding-top: calc(var(--safe-top) + 34px);
+}
+.guide h3 {
+  font-size: 26px;
+  text-wrap: pretty;
+}
+.guide p {
+  font-size: 15px;
+  color: var(--color-neutral-300);
+  text-wrap: pretty;
+}
+
+.guide-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin: 6px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.guide-step {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 12px 14px;
+  border-radius: var(--radius-lg);
+  background: var(--color-surface);
+}
+.guide-step-n {
+  flex: none;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--color-accent-900);
+  color: var(--color-accent-300);
+  font-size: 14px;
+}
+.guide-step-text {
+  flex: 1;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.guide-step > svg {
+  flex: none;
+  color: var(--color-accent);
+}
+
+.guide-install {
+  min-height: 52px;
+  font-size: 16px;
+}
+.guide-install[data-installed='true']:disabled {
+  opacity: 1;
+  cursor: default;
+}
+.guide-fallback {
+  font-size: 13px;
+  color: var(--color-neutral-400);
+}
+
+/* Points at Safari's toolbar below, or Chrome's menu above */
+.guide-hint {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 13px;
+  color: var(--color-accent-300);
+}
+.guide-hint-down {
+  align-items: center;
+  padding-bottom: calc(8px + var(--safe-bottom));
+}
+.guide-hint-up {
+  align-items: flex-end;
+  padding: calc(6px + env(safe-area-inset-top, 0px)) 18px 0;
+}
+.guide-hint-up svg {
+  margin-right: 6px;
+}

@@ -4,10 +4,12 @@ import './theme/tokens.css';
 import './theme/base.css';
 import { App } from './App';
 import { isStandalone } from './platform';
+import { captureInstallPrompt } from './pwa/install';
 import { StoreProvider, loadInitialData } from './state/store';
 import { UIProvider } from './state/ui';
 
 async function start() {
+  captureInstallPrompt();
   if (import.meta.env.DEV) {
     const { applyDevParams } = await import('./dev/devParams');
     await applyDevParams();

@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240"><clipPath id="corner"><rect x="0" y="0" width="240" height="240" rx="54"/></clipPath><g clip-path="url(#corner)"><svg x="0" y="0" width="240" height="240" viewBox="0 0 240 240">
+  <!-- App icon 1a, "dygnsringen". Full-bleed square; the platform rounds the corners.
+       scripts/generate-icons.mjs renders the PNG icons and splash screens from this file. -->
+  <defs>
+    <linearGradient id="bg" gradientUnits="userSpaceOnUse" x1="67.4" y1="-24.6" x2="172.6" y2="264.6">
+      <stop offset="0" stop-color="#262838"/>
+      <stop offset="1" stop-color="#14161f"/>
+    </linearGradient>
+    <mask id="moon">
+      <circle cx="120" cy="120" r="31" fill="#fff"/>
+      <circle cx="132.4" cy="108.84" r="26.93" fill="#000"/>
+    </mask>
+  </defs>
+  <rect width="240" height="240" fill="url(#bg)"/>
+  <g id="content">
+    <g fill="none" stroke-width="20.4">
+      <circle cx="120" cy="120" r="69.8" stroke="#3f424d"/>
+      <path stroke="#9184d9" d="M141.57 53.62A69.8 69.8 0 0 1 181.63 87.23"/>
+      <path stroke="#9184d9" d="M187.1 100.76A69.8 69.8 0 0 1 184.72 146.15"/>
+      <path stroke="#9184d9" d="M52.27 103.11A69.8 69.8 0 0 1 120 50.2"/>
+      <path stroke="#5d5294" d="M154.9 180.45A69.8 69.8 0 0 1 129.71 189.12"/>
+      <path stroke="#5d5294" d="M80.97 177.87A69.8 69.8 0 0 1 62.13 159.03"/>
+    </g>
+    <g fill="#1d1f2c">
+      <circle cx="193.08" cy="87.46" r="13"/>
+      <circle cx="181.28" cy="171.42" r="13"/>
+      <circle cx="44.82" cy="147.36" r="13"/>
+    </g>
+    <g fill="#e2b48e">
+      <circle cx="193.08" cy="87.46" r="9"/>
+      <circle cx="181.28" cy="171.42" r="9"/>
+      <circle cx="44.82" cy="147.36" r="9"/>
+    </g>
+    <circle cx="120" cy="120" r="31" fill="#d2cefd" mask="url(#moon)"/>
+  </g>
+</svg></g></svg>

@@ -4,7 +4,9 @@ import { BottomSheet } from './components/BottomSheet';
 import { type Tab, TabBar } from './components/TabBar';
 import { UndoBar } from './components/UndoBar';
 import { DiaryScreen } from './screens/diary/DiaryScreen';
+import { installGuide } from './pwa/install';
 import { InsightsScreen } from './screens/insights/InsightsScreen';
+import { InstallGuide } from './screens/InstallGuide';
 import { Intro } from './screens/Intro';
 import { NowScreen } from './screens/now/NowScreen';
 import { EditSheet } from './sheets/EditSheet';
@@ -21,7 +23,16 @@ export function App() {
   const now = useNow();
   useThemeSync(settings, now);
   const [tab, setTab] = useState<Tab>('nu');
+  const [guide] = useState(installGuide);
   const sheet = ui.sheet;
+
+  if (guide) {
+    return (
+      <div className="app">
+        <InstallGuide platform={guide} />
+      </div>
+    );
+  }
 
   return (
     <div className="app">
