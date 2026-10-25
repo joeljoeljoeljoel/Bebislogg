@@ -1,0 +1,8 @@
+node_modules/
+dist/
+dev-dist/
+*.local
+*.log
+
+# Design handoff stays local (the repo is public for free GitHub Pages)
+design_handoff_bebislogg/
