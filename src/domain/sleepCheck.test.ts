@@ -40,6 +40,17 @@ describe('checkSleep', () => {
     expect(w?.fix?.label).toBe('Flytta Vaknade till 17:00');
   });
 
+  it('has no fix for a sleep entirely inside another', () => {
+    const w = checkSleep({ start: at('2026-10-22 13:20'), end: at('2026-10-22 13:50') }, [existing], now);
+    expect(w).toEqual({ kind: 'overlap', text: 'Överlappar sömnen 13:10–14:00.', fix: null });
+  });
+
+  it('has no fix for a sleep that starts inside an ongoing one', () => {
+    const open = sleep('2026-10-22 03:09', null);
+    const w = checkSleep({ start: at('2026-10-22 10:05'), end: at('2026-10-22 11:05') }, [open], now);
+    expect(w).toEqual({ kind: 'overlap', text: 'Överlappar sömnen 03:09–nu.', fix: null });
+  });
+
   it('has no fix for an ongoing draft that started earlier', () => {
     const w = checkSleep({ start: at('2026-10-22 12:00'), end: null }, [existing], now);
     expect(w).toEqual({ kind: 'overlap', text: 'Överlappar sömnen 13:10–14:00.', fix: null });

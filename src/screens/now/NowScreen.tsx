@@ -1,11 +1,10 @@
-import { useMemo } from 'react';
 import { ClockCountdown, CloudArrowUp, GearSix } from '@phosphor-icons/react';
 import { forecastText } from '../../domain/forecast';
-import { buildModel } from '../../domain/model';
 import { getStatus } from '../../domain/status';
 import { DAY, ageText } from '../../domain/time';
 import { UndoBar } from '../../components/UndoBar';
 import { useStore } from '../../state/store';
+import { useModel } from '../../state/useModel';
 import { useUI } from '../../state/ui';
 import { FeedCard } from './FeedCard';
 import { SleepButton } from './SleepButton';
@@ -17,7 +16,7 @@ import './Now.css';
 export function NowScreen({ now }: { now: number }) {
   const { events, settings } = useStore();
   const ui = useUI();
-  const m = useMemo(() => buildModel(events, settings, now), [events, settings, now]);
+  const m = useModel(now);
   const status = getStatus(m);
   const openSettings = () => ui.openSheet({ kind: 'settings' });
 

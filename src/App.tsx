@@ -1,9 +1,9 @@
-import { useState } from 'react';
+import { Activity, useState } from 'react';
 import './App.css';
 import { BottomSheet } from './components/BottomSheet';
 import { type Tab, TabBar } from './components/TabBar';
 import { UndoBar } from './components/UndoBar';
-import { DiaryScreen } from './screens/DiaryScreen';
+import { DiaryScreen } from './screens/diary/DiaryScreen';
 import { InsightsScreen } from './screens/InsightsScreen';
 import { Intro } from './screens/Intro';
 import { NowScreen } from './screens/now/NowScreen';
@@ -25,10 +25,17 @@ export function App() {
 
   return (
     <div className="app">
+      {/* Hidden tabs keep their state, e.g. which dygn are expanded in Dagbok. */}
       <main className="screen">
-        {tab === 'nu' && <NowScreen now={now} />}
-        {tab === 'dagbok' && <DiaryScreen />}
-        {tab === 'insikter' && <InsightsScreen />}
+        <Activity mode={tab === 'nu' ? 'visible' : 'hidden'}>
+          <NowScreen now={now} />
+        </Activity>
+        <Activity mode={tab === 'dagbok' ? 'visible' : 'hidden'}>
+          <DiaryScreen now={now} />
+        </Activity>
+        <Activity mode={tab === 'insikter' ? 'visible' : 'hidden'}>
+          <InsightsScreen />
+        </Activity>
       </main>
       {tab !== 'nu' && <UndoBar placement="tab" />}
       <TabBar tab={tab} onChange={setTab} />

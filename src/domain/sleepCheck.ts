@@ -26,11 +26,17 @@ export function checkSleep(draft: SleepDraft, sleeps: Sleep[], now: number): Sle
   if (!other) return null;
 
   const text = `Överlappar sömnen ${hm(other.start)}–${other.end !== null ? hm(other.end) : 'nu'}.`;
-  if (other.end !== null && draft.start >= other.start && draft.start < other.end) {
+  // A fix is only offered when it resolves the overlap.
+  if (draft.start >= other.start) {
+    // Starts inside the other sleep: move it to start when that one ended, if
+    // it ended at all and this one goes on beyond it.
+    if (other.end === null || (draft.end !== null && draft.end <= other.end)) {
+      return { kind: 'overlap', text, fix: null };
+    }
     const fix = { label: `Flytta Somnade till ${hm(other.end)}`, patch: { start: other.end } };
     return { kind: 'overlap', text, fix };
   }
-  if (draft.end !== null && draft.end > other.start) {
+  if (draft.end !== null) {
     const fix = { label: `Flytta Vaknade till ${hm(other.start)}`, patch: { end: other.start } };
     return { kind: 'overlap', text, fix };
   }

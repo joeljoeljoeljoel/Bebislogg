@@ -1,0 +1,197 @@
+.diary-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+}
+.diary-head h2 {
+  flex: 1;
+  font-size: 28px;
+}
+.diary-add {
+  flex: none;
+  min-height: 44px;
+  padding: 0 14px;
+  font-size: 15px;
+  white-space: nowrap;
+}
+.diary-empty {
+  margin: 24px 0;
+  font-size: 15px;
+  color: var(--color-neutral-400);
+  text-wrap: pretty;
+}
+.diary-more {
+  width: 100%;
+  min-height: 44px;
+  margin-top: 18px;
+}
+
+/* — a dygn — */
+.dday {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 14px;
+}
+.dday-toggle {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+.dday-label {
+  flex: none;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.dday-summary {
+  flex: 1;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--color-neutral-400);
+}
+.dday-toggle svg {
+  flex: none;
+  align-self: center;
+  color: var(--color-neutral-500);
+}
+.dday-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px 8px;
+  margin-bottom: 6px;
+  padding: 12px;
+  border-radius: var(--radius-md);
+  background: var(--color-surface);
+}
+.dstat {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.3;
+}
+.dstat-label {
+  font-size: 11px;
+  color: var(--color-neutral-400);
+}
+.dstat-value {
+  font-size: 15px;
+}
+
+/* — wake window between sleeps — */
+.dwake {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 27px;
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--color-neutral-400);
+}
+.dwake::before {
+  content: '';
+  flex: none;
+  width: 2px;
+  height: 22px;
+  border-radius: 1px;
+  background: repeating-linear-gradient(to bottom, var(--bl-awake) 0 3px, transparent 3px 6px);
+  opacity: 0.6;
+}
+
+/* — event rows; "Ta bort" waits behind each row — */
+.drow {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: var(--color-neutral-800);
+}
+.drow-delete {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 88px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  border: 0;
+  background: transparent;
+  color: var(--color-neutral-100);
+  font-size: 12px;
+  cursor: pointer;
+}
+.drow-main {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 12px;
+  border-radius: 12px;
+  background: var(--color-bg);
+  cursor: pointer;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  transition: transform 0.22s ease;
+}
+.drow-main[data-type='sleep'] {
+  background: var(--color-accent-900);
+}
+.drow-main:focus-visible {
+  outline-offset: -2px;
+}
+.drow-icon {
+  flex: none;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 600;
+}
+[data-type='sleep'] .drow-icon {
+  background: var(--color-accent-800);
+  color: var(--color-accent-300);
+}
+[data-type='feed'] .drow-icon {
+  background: var(--bl-feed-dim);
+  color: var(--bl-feed);
+}
+[data-type='bottle'] .drow-icon {
+  background: var(--bl-bottle-dim);
+  color: var(--bl-bottle);
+}
+[data-type='vitd'] .drow-icon {
+  background: var(--bl-vitd-dim);
+  color: var(--bl-vitd);
+}
+.drow-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.drow-time {
+  font-size: 16px;
+}
+.drow-sub {
+  font-size: 12px;
+  color: var(--color-neutral-400);
+}
+.drow-right {
+  font-size: 15px;
+  color: var(--color-neutral-200);
+}
