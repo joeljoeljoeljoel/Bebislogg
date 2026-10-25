@@ -1,19 +1,27 @@
 import { useState } from 'react';
 import './App.css';
+import { BottomSheet } from './components/BottomSheet';
 import { type Tab, TabBar } from './components/TabBar';
+import { UndoBar } from './components/UndoBar';
 import { DiaryScreen } from './screens/DiaryScreen';
 import { InsightsScreen } from './screens/InsightsScreen';
 import { Intro } from './screens/Intro';
-import { NowScreen } from './screens/NowScreen';
+import { NowScreen } from './screens/now/NowScreen';
+import { EditSheet } from './sheets/EditSheet';
+import { SettingsSheet } from './sheets/SettingsSheet';
 import { useNow } from './state/clock';
+import { draftTitle } from './state/draft';
 import { useStore } from './state/store';
+import { useUI } from './state/ui';
 import { useThemeSync } from './theme/theme';
 
 export function App() {
   const { settings } = useStore();
+  const ui = useUI();
   const now = useNow();
   useThemeSync(settings, now);
   const [tab, setTab] = useState<Tab>('nu');
+  const sheet = ui.sheet;
 
   return (
     <div className="app">
@@ -22,7 +30,20 @@ export function App() {
         {tab === 'dagbok' && <DiaryScreen />}
         {tab === 'insikter' && <InsightsScreen />}
       </main>
+      {tab !== 'nu' && <UndoBar placement="tab" />}
       <TabBar tab={tab} onChange={setTab} />
+      {sheet && (
+        <BottomSheet
+          label={sheet.kind === 'draft' ? draftTitle(sheet.draft) : 'Inställningar'}
+          onClose={ui.closeSheet}
+        >
+          {sheet.kind === 'draft' ? (
+            <EditSheet key={sheet.draft.id ?? sheet.draft.kind} initial={sheet.draft} />
+          ) : (
+            <SettingsSheet />
+          )}
+        </BottomSheet>
+      )}
       {!settings.setupDone && <Intro />}
     </div>
   );

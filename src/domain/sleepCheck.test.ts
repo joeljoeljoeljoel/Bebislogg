@@ -8,7 +8,7 @@ const existing = sleep('2026-10-22 13:10', '2026-10-22 14:00');
 describe('checkSleep', () => {
   it('requires waking after falling asleep', () => {
     const w = checkSleep({ start: at('2026-10-22 15:00'), end: at('2026-10-22 15:00') }, [], now);
-    expect(w).toEqual({ text: 'Vaknade behöver vara efter Somnade.', fix: null });
+    expect(w).toEqual({ kind: 'order', text: 'Vaknade behöver vara efter Somnade.', fix: null });
   });
 
   it('accepts a sleep that does not overlap', () => {
@@ -42,6 +42,6 @@ describe('checkSleep', () => {
 
   it('has no fix for an ongoing draft that started earlier', () => {
     const w = checkSleep({ start: at('2026-10-22 12:00'), end: null }, [existing], now);
-    expect(w).toEqual({ text: 'Överlappar sömnen 13:10–14:00.', fix: null });
+    expect(w).toEqual({ kind: 'overlap', text: 'Överlappar sömnen 13:10–14:00.', fix: null });
   });
 });

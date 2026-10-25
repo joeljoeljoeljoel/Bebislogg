@@ -5,6 +5,7 @@ import './theme/base.css';
 import { App } from './App';
 import { isStandalone } from './platform';
 import { StoreProvider, loadInitialData } from './state/store';
+import { UIProvider } from './state/ui';
 
 async function start() {
   if (import.meta.env.DEV) {
@@ -15,7 +16,9 @@ async function start() {
   createRoot(document.getElementById('root')!).render(
     <StrictMode>
       <StoreProvider initial={initial}>
-        <App />
+        <UIProvider>
+          <App />
+        </UIProvider>
       </StoreProvider>
     </StrictMode>,
   );

@@ -1,0 +1,82 @@
+.undo {
+  position: absolute;
+  z-index: 15;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 10px 10px 14px;
+  border-radius: 14px;
+  background: var(--color-neutral-800);
+  box-shadow: var(--shadow-md);
+  animation: undo-in 0.18s ease-out;
+}
+/* On Nu: just above the feeding card, so the buttons stay free */
+.undo-now {
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 10px);
+}
+.undo-tab {
+  left: 16px;
+  right: 16px;
+  bottom: calc(var(--tabbar-h) + 12px);
+}
+
+.undo-msg {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 15px;
+  line-height: 1.35;
+}
+.undo-msg svg {
+  flex: none;
+  color: var(--color-accent-300);
+}
+.undo-msg span {
+  flex: 1;
+  text-wrap: pretty;
+}
+
+.undo-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.undo-actions .btn {
+  flex: none;
+  min-height: 44px;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+.undo-actions .undo-all {
+  margin-left: auto;
+  padding: 0 14px;
+}
+
+.undo-row {
+  display: flex;
+  gap: 6px;
+}
+.undo-row .btn-secondary {
+  flex: 1;
+  min-height: 44px;
+  padding: 0;
+  white-space: nowrap;
+}
+.undo-row .btn-ghost {
+  min-height: 44px;
+  padding: 0 8px;
+}
+
+@keyframes undo-in {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .undo {
+    animation: none;
+  }
+}

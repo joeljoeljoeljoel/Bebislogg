@@ -1,0 +1,64 @@
+/* Chart colors come from the theme tokens (SVG attributes cannot use var()). */
+
+.dayclock {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.dc-night {
+  fill: var(--bl-night);
+}
+.dc-ring,
+.dc-sleep {
+  fill: none;
+}
+.dc-ring {
+  stroke: var(--bl-ring);
+}
+.dc-sleep {
+  stroke: var(--bl-sleep);
+}
+.dc-dot {
+  stroke: var(--color-surface);
+  stroke-width: 1.5;
+}
+.dc-dot.dc-feed {
+  fill: var(--bl-feed);
+}
+.dc-dot.dc-bottle {
+  fill: var(--bl-bottle);
+}
+.dc-mark circle {
+  stroke-width: 1;
+}
+.dc-mark text {
+  font-size: 9.5px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+.dc-mark.dc-feed circle {
+  fill: var(--bl-feed-dim);
+  stroke: var(--bl-feed);
+}
+.dc-mark.dc-feed text {
+  fill: var(--bl-feed);
+}
+.dc-mark.dc-bottle circle {
+  fill: var(--bl-bottle-dim);
+  stroke: var(--bl-bottle);
+}
+.dc-mark.dc-bottle text {
+  fill: var(--bl-bottle);
+}
+.dc-label {
+  fill: var(--bl-muted);
+  font-size: 11px;
+  text-anchor: middle;
+}
+.dc-hand {
+  stroke: var(--color-text);
+  stroke-linecap: round;
+}
+.dc-hub {
+  fill: var(--color-text);
+}

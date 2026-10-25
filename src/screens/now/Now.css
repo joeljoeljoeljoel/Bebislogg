@@ -1,0 +1,370 @@
+.now {
+  height: 100%;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 4px 16px 14px;
+}
+.now > * {
+  flex: none;
+}
+/* Pushes the buttons down to the thumb */
+.now > .now-spacer {
+  flex: 1 1 0;
+}
+
+/* — header — */
+.now-head {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+}
+.now-who {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.now-name {
+  font-size: 17px;
+  font-weight: 500;
+}
+.now-age {
+  font-size: 12px;
+  color: var(--color-neutral-500);
+}
+.now-backup {
+  flex: none;
+  min-height: 44px;
+  padding: 0 8px;
+  font-size: 12px;
+  font-weight: 400;
+  white-space: nowrap;
+  color: var(--color-neutral-400);
+}
+.now-gear {
+  width: 44px;
+  height: 44px;
+  color: var(--color-neutral-300);
+}
+@media (hover: hover) {
+  .now-gear:hover {
+    background: var(--bl-hover);
+  }
+}
+
+/* — status card — */
+.status-card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(160deg, var(--color-surface), var(--bl-card-end));
+  box-shadow: var(--shadow-sm);
+}
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.status-main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.status-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+  line-height: 1.3;
+  color: var(--color-neutral-400);
+}
+.status-card[data-status='asleep'] .status-label {
+  color: var(--bl-sleep);
+}
+.status-card[data-status='awake'] .status-label {
+  color: var(--bl-awake);
+}
+.status-timer {
+  display: flex;
+  align-items: baseline;
+  gap: 5px;
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+}
+.status-unit {
+  font-size: 20px;
+  letter-spacing: 0;
+  color: var(--color-neutral-400);
+}
+.status-unit-h {
+  margin-right: 6px;
+}
+.status-since {
+  font-size: 14px;
+  color: var(--color-neutral-400);
+}
+.status-hint {
+  margin-top: 4px;
+  font-size: 15px;
+  line-height: 1.4;
+  color: var(--color-neutral-300);
+  text-wrap: pretty;
+}
+.status-clock {
+  flex: none;
+  width: 108px;
+  height: 108px;
+}
+.fatigue {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+.fatigue-track {
+  height: 6px;
+  border-radius: 3px;
+  overflow: hidden;
+  background: var(--color-neutral-900);
+}
+.fatigue-fill {
+  height: 100%;
+  border-radius: 3px;
+  background: var(--bl-awake);
+  transition: width 0.6s;
+}
+.fatigue span {
+  font-size: 13px;
+  line-height: 1.3;
+  color: var(--color-neutral-300);
+}
+
+/* — forecast — */
+.now-forecast {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 4px;
+  font-size: 14px;
+  line-height: 1.3;
+  color: var(--color-neutral-300);
+}
+.now-forecast svg {
+  flex: none;
+  color: var(--bl-feed);
+}
+
+/* — vitamin D — */
+.vitd-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 52px;
+  padding: 6px 12px;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-neutral-800);
+  background: var(--color-surface);
+  color: var(--color-text);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    transform 0.1s;
+}
+.vitd-row[data-given='true'] {
+  border-color: var(--bl-vitd-dim);
+  background: var(--bl-tint-vitd);
+}
+.vitd-row:active {
+  transform: scale(0.99);
+}
+.vitd-row > svg {
+  flex: none;
+  color: var(--bl-vitd);
+}
+.vitd-text {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+.vitd-title {
+  font-size: 15px;
+}
+.vitd-sub {
+  font-size: 12px;
+  color: var(--color-neutral-400);
+}
+.vitd-dots {
+  flex: none;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.vitd-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-neutral-700);
+}
+.vitd-dot[data-given='true'] {
+  border-color: var(--bl-vitd);
+  background: var(--bl-vitd);
+}
+.vitd-dot[data-today='true'] {
+  box-shadow:
+    0 0 0 2px var(--color-bg),
+    0 0 0 3px var(--color-neutral-500);
+}
+
+/* — buttons — */
+.now-actions {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.press {
+  -webkit-touch-callout: none;
+  touch-action: manipulation;
+}
+
+.feed-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 14px;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-sm);
+}
+.feed-buttons {
+  display: flex;
+  gap: 8px;
+}
+.feed-btn {
+  flex: 1;
+  min-width: 0;
+  height: 96px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1.5px solid var(--color-neutral-800);
+  background: transparent;
+  color: var(--color-text);
+  line-height: 1.2;
+  cursor: pointer;
+  transition:
+    background 0.25s,
+    border-color 0.25s,
+    transform 0.1s;
+}
+.feed-btn:active {
+  transform: scale(0.98);
+}
+.feed-btn[data-next='true'] {
+  border-color: var(--bl-feed);
+  background: var(--bl-tint-feed);
+}
+@media (hover: hover) {
+  .feed-side:hover {
+    background: var(--bl-tint-feed);
+  }
+  .feed-bottle:hover {
+    background: var(--bl-tint-bottle);
+  }
+}
+.feed-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+}
+/* Höger mirrors Vänster, so the side reads from placement too */
+.feed-side-H .feed-top {
+  flex-direction: row-reverse;
+}
+.feed-letter {
+  font-size: 30px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--bl-feed);
+}
+.feed-next {
+  background: var(--bl-feed-dim);
+  color: var(--bl-feed-ink);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+.feed-btn[data-next='true'] .feed-next {
+  opacity: 1;
+}
+.feed-label {
+  font-size: 15px;
+  text-align: left;
+}
+.feed-side-H .feed-label {
+  text-align: right;
+}
+.feed-bottle svg {
+  flex: none;
+  color: var(--bl-bottle);
+}
+.feed-ml {
+  font-size: 13px;
+  white-space: nowrap;
+  color: var(--color-neutral-300);
+}
+.feed-last {
+  padding: 0 2px;
+  font-size: 13px;
+  line-height: 1.35;
+  color: var(--color-neutral-400);
+}
+
+.sleep-btn {
+  width: 100%;
+  height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 16px;
+  border: 1.5px solid var(--bl-sleep);
+  color: var(--bl-sleep);
+  background: var(--bl-tint-sleep);
+  box-shadow: 0 0 32px var(--bl-glow-sleep);
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.sleep-btn[data-asleep='true'] {
+  border-color: var(--bl-awake);
+  color: var(--bl-awake);
+  background: var(--bl-tint-awake);
+  box-shadow: 0 0 32px var(--bl-glow-awake);
+}
+.sleep-btn:active {
+  transform: scale(0.985);
+}
+@media (hover: hover) {
+  .sleep-btn:hover {
+    filter: brightness(1.12);
+  }
+}
