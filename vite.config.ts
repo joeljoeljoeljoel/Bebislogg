@@ -30,6 +30,7 @@ export default defineConfig({
   ],
   test: {
     environment: 'node',
-    passWithNoTests: true,
+    // Date logic is tested against Swedish DST, also in CI (which runs in UTC).
+    env: { TZ: 'Europe/Stockholm' },
   },
 });
