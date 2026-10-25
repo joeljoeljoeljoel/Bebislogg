@@ -1,0 +1,191 @@
+.insights {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.insights > * {
+  flex: none;
+}
+.insights-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-height: 48px;
+}
+.insights-head h2 {
+  flex: 1;
+  font-size: 28px;
+}
+.insights-head .seg {
+  flex: none;
+}
+.insights-head .seg-opt {
+  min-height: 36px;
+  padding: 0 12px;
+  white-space: nowrap;
+}
+
+.insights .card {
+  box-shadow: var(--shadow-sm);
+}
+
+/* — insight cards — */
+.insight {
+  gap: 4px;
+  padding: 12px 14px;
+}
+.insight .card-kicker {
+  color: var(--color-accent-300);
+}
+.insight-text {
+  font-size: 15px;
+  line-height: 1.4;
+  text-wrap: pretty;
+}
+.insight[data-available='false'] .insight-text {
+  color: var(--color-neutral-400);
+}
+.insights-empty {
+  padding: 14px;
+  font-size: 14px;
+  color: var(--color-neutral-400);
+}
+
+/* — chart cards — */
+.chart-card {
+  gap: 8px;
+  padding: 14px 12px 12px;
+}
+.chart-head {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  padding: 0 2px;
+  line-height: 1.3;
+}
+.chart-title {
+  font-size: 16px;
+  letter-spacing: 0;
+  line-height: 1.3;
+}
+.chart-question {
+  font-size: 12px;
+  color: var(--color-neutral-400);
+}
+.chart {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.big-clock {
+  max-width: 300px;
+  aspect-ratio: 1;
+  margin: 0 auto;
+}
+.chart-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 0 2px;
+}
+.chart-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  color: var(--color-neutral-400);
+}
+.chart-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+}
+
+/* — vitamin D card — */
+.vitd-card {
+  gap: 10px;
+  padding: 14px 12px 12px;
+}
+.vitd-card-head {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 2px;
+}
+.vitd-card-head > svg {
+  flex: none;
+  color: var(--bl-vitd);
+}
+.vitd-card-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+  line-height: 1.3;
+}
+.vitd-card-title {
+  font-size: 16px;
+  font-weight: 500;
+}
+.vitd-card-sub {
+  font-size: 12px;
+  color: var(--color-neutral-400);
+}
+.vitd-grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px 4px;
+}
+.vitd-cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  line-height: 1.3;
+}
+.vitd-cell-day {
+  font-size: 11px;
+  color: var(--color-neutral-400);
+}
+.vitd-cell[data-today='true'] .vitd-cell-day {
+  color: var(--color-text);
+}
+.vitd-cell-dot {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  border: 1.5px solid var(--color-neutral-700);
+  color: var(--color-bg);
+}
+.vitd-cell[data-today='true'] .vitd-cell-dot {
+  border-color: var(--color-neutral-500);
+}
+.vitd-cell-dot[data-given='true'] {
+  border-color: var(--bl-vitd);
+  background: var(--bl-vitd);
+}
+.vitd-cell-time {
+  font-size: 10px;
+  color: var(--color-neutral-400);
+}
+
+/* — week table — */
+.week-card {
+  gap: 6px;
+  padding: 14px 8px 8px;
+}
+.week-head {
+  padding: 0 6px;
+}
+.week-table {
+  font-size: 12px;
+}
+.week-table th {
+  padding: 6px 3px;
+}
+.week-table td {
+  padding: 7px 3px;
+  white-space: nowrap;
+}

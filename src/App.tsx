@@ -4,7 +4,7 @@ import { BottomSheet } from './components/BottomSheet';
 import { type Tab, TabBar } from './components/TabBar';
 import { UndoBar } from './components/UndoBar';
 import { DiaryScreen } from './screens/diary/DiaryScreen';
-import { InsightsScreen } from './screens/InsightsScreen';
+import { InsightsScreen } from './screens/insights/InsightsScreen';
 import { Intro } from './screens/Intro';
 import { NowScreen } from './screens/now/NowScreen';
 import { EditSheet } from './sheets/EditSheet';
@@ -34,7 +34,7 @@ export function App() {
           <DiaryScreen now={now} />
         </Activity>
         <Activity mode={tab === 'insikter' ? 'visible' : 'hidden'}>
-          <InsightsScreen />
+          <InsightsScreen now={now} />
         </Activity>
       </main>
       {tab !== 'nu' && <UndoBar placement="tab" />}

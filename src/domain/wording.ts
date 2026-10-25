@@ -9,16 +9,18 @@ export interface Words {
   tableHead: string;
   /** Kicker of the evening-feeding insight */
   eveningKicker: string;
+  /** Title of the interval chart */
+  interval: string;
 }
 
 export function words(mode: FeedMode): Words {
   switch (mode) {
     case 'Amning':
-      return { one: 'amning', many: 'amningar', tableHead: 'Amn.', eveningKicker: 'Tätamning' };
+      return { one: 'amning', many: 'amningar', tableHead: 'Amn.', eveningKicker: 'Tätamning', interval: 'Amningsintervall' };
     case 'Flaska':
-      return { one: 'flaska', many: 'flaskor', tableHead: 'Fl.', eveningKicker: 'Kvällsmatning' };
+      return { one: 'flaska', many: 'flaskor', tableHead: 'Fl.', eveningKicker: 'Kvällsmatning', interval: 'Flaskintervall' };
     case 'Båda':
-      return { one: 'matning', many: 'matningar', tableHead: 'Mat.', eveningKicker: 'Kvällsmatning' };
+      return { one: 'matning', many: 'matningar', tableHead: 'Mat.', eveningKicker: 'Kvällsmatning', interval: 'Matningsintervall' };
   }
 }
 
