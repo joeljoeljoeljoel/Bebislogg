@@ -28,6 +28,10 @@
 .insights .card {
   box-shadow: var(--shadow-sm);
 }
+.insights-bvc {
+  min-height: 44px;
+  font-size: 15px;
+}
 
 /* — insight cards — */
 .insight {

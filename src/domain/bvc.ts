@@ -1,10 +1,12 @@
 // The summary for BVC: the last finished dygn, with averages per dygn.
 import type { Model } from './model';
-import type { Period } from './charts';
 import { completeDays } from './stats';
 import { WEEKDAYS, ageText, average, shortDate, startOfDay } from './time';
 import { vitdOn } from './vitd';
 import type { Words } from './wording';
+
+/** Number of finished dygn to summarize */
+export type BvcPeriod = 7 | 14 | 28;
 
 export interface BvcRow {
   D: number;
@@ -54,7 +56,7 @@ export function rangeLabel(from: number, to: number): string {
   return a.getDate() === b.getDate() ? shortDate(to) : `${a.getDate()}–${shortDate(to)}`;
 }
 
-export function bvcSummary(m: Model, period: Period): BvcSummary {
+export function bvcSummary(m: Model, period: BvcPeriod): BvcSummary {
   const days = completeDays(m).slice(0, period);
   const rows = days.map(
     (s): BvcRow => ({

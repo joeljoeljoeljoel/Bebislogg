@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { ClipboardText } from '@phosphor-icons/react';
 import { DayClock } from '../../charts/DayClock';
 import { BarChart } from '../../charts/BarChart';
 import { Balance } from '../../charts/Balance';
@@ -21,6 +22,7 @@ import { cap } from '../../domain/wording';
 import { Seg } from '../../components/Seg';
 import { useStore } from '../../state/store';
 import { useModel } from '../../state/useModel';
+import { useUI } from '../../state/ui';
 import { VitdCard } from './VitdCard';
 import { WeekTable } from './WeekTable';
 import './Insights.css';
@@ -34,6 +36,7 @@ const PERIODS: [Period, string][] = [
 export function InsightsScreen({ now }: { now: number }) {
   const m = useModel(now);
   const { settings } = useStore();
+  const ui = useUI();
   const [period, setPeriod] = useState<Period>(7);
   const cards = useMemo(() => insights(m), [m]);
   const { one, many } = m.words;
@@ -64,6 +67,11 @@ export function InsightsScreen({ now }: { now: number }) {
         <h2>Insikter</h2>
         <Seg label="Period" options={PERIODS} value={period} onChange={setPeriod} />
       </div>
+
+      <button type="button" className="btn btn-secondary btn-block insights-bvc" onClick={() => ui.openSheet({ kind: 'bvc' })}>
+        <ClipboardText size={18} />
+        Sammanfattning till BVC
+      </button>
 
       {cards.map((c) => (
         <div key={c.kicker} className="card insight" data-available={c.available}>

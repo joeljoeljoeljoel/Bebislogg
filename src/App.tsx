@@ -9,6 +9,7 @@ import { InsightsScreen } from './screens/insights/InsightsScreen';
 import { InstallGuide } from './screens/InstallGuide';
 import { Intro } from './screens/Intro';
 import { NowScreen } from './screens/now/NowScreen';
+import { BvcSheet } from './sheets/BvcSheet';
 import { EditSheet } from './sheets/EditSheet';
 import { SettingsSheet } from './sheets/SettingsSheet';
 import { useNow } from './state/clock';
@@ -52,14 +53,18 @@ export function App() {
       <TabBar tab={tab} onChange={setTab} />
       {sheet && (
         <BottomSheet
-          label={sheet.kind === 'draft' ? draftTitle(sheet.draft) : 'Inställningar'}
+          label={
+            sheet.kind === 'draft'
+              ? draftTitle(sheet.draft)
+              : sheet.kind === 'bvc'
+                ? 'Sammanfattning till BVC'
+                : 'Inställningar'
+          }
           onClose={ui.closeSheet}
         >
-          {sheet.kind === 'draft' ? (
-            <EditSheet key={sheet.draft.id ?? sheet.draft.kind} initial={sheet.draft} />
-          ) : (
-            <SettingsSheet />
-          )}
+          {sheet.kind === 'draft' && <EditSheet key={sheet.draft.id ?? sheet.draft.kind} initial={sheet.draft} />}
+          {sheet.kind === 'settings' && <SettingsSheet />}
+          {sheet.kind === 'bvc' && <BvcSheet now={now} />}
         </BottomSheet>
       )}
       {!settings.setupDone && <Intro />}

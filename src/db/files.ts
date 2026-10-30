@@ -1,21 +1,17 @@
-// Backup files in the browser: export via the share sheet or a download, and reading one back.
+// Files in the browser: hand one to the share sheet or download it, and read a backup back.
 import type { LogEvent, Settings } from '../domain/types';
 import type { AppData } from '../state/store';
 import { backupFileName, makeBackup, parseBackup } from './backup';
 
 /**
- * Hands the backup to the share sheet (iPhone: "Spara i Filer"), or downloads
- * it where files cannot be shared. Chrome does not share JSON, so Android
- * downloads. Returns false if the user cancelled.
+ * Hands the file to the share sheet (iPhone: "Spara i Filer", Bilder, Meddelanden …),
+ * or downloads it where that type cannot be shared. Chrome does not share JSON,
+ * so on Android a backup downloads. Returns false if the user cancelled.
  */
-export async function exportBackup(events: LogEvent[], settings: Settings, now: number): Promise<boolean> {
-  const json = JSON.stringify(makeBackup(events, settings, now), null, 2);
-  const name = backupFileName(now);
-  const file = new File([json], name, { type: 'application/json' });
-
+export async function shareOrDownload(file: File, title: string): Promise<boolean> {
   if (navigator.canShare?.({ files: [file] })) {
     try {
-      await navigator.share({ files: [file], title: 'Bebislogg' });
+      await navigator.share({ files: [file], title });
       return true;
     } catch (err) {
       if ((err as DOMException).name === 'AbortError') return false;
@@ -26,10 +22,15 @@ export async function exportBackup(events: LogEvent[], settings: Settings, now: 
   const url = URL.createObjectURL(file);
   const a = document.createElement('a');
   a.href = url;
-  a.download = name;
+  a.download = file.name;
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 3000);
   return true;
+}
+
+export function exportBackup(events: LogEvent[], settings: Settings, now: number): Promise<boolean> {
+  const json = JSON.stringify(makeBackup(events, settings, now), null, 2);
+  return shareOrDownload(new File([json], backupFileName(now), { type: 'application/json' }), 'Bebislogg');
 }
 
 /** The data in a backup file, or null if it is not a Bebislogg backup. */

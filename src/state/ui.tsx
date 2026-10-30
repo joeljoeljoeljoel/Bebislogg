@@ -17,7 +17,7 @@ import { type Draft, draftEvent, editDraft } from './draft';
 import { clockNow, refreshNow } from './clock';
 import { type AppData, useStore } from './store';
 
-export type Sheet = { kind: 'draft'; draft: Draft } | { kind: 'settings' };
+export type Sheet = { kind: 'draft'; draft: Draft } | { kind: 'settings' } | { kind: 'bvc' };
 export type UndoMode = 'base' | 'time' | 'ml';
 
 const UNDO_MS = 6000;
