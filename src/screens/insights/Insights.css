@@ -104,6 +104,36 @@
   height: 10px;
   border-radius: 3px;
 }
+.chart-legend i[data-line='true'] {
+  width: 2px;
+  height: 12px;
+  border-radius: 1px;
+}
+
+/* — day clock, stepping back through dygn — */
+.clock-nav {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+.clock-nav .btn-icon {
+  width: 44px;
+  height: 44px;
+}
+.clock-nav-label {
+  flex: 1;
+  text-align: center;
+  font-size: 15px;
+  font-weight: 500;
+}
+.clock-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 4px 2px 2px;
+  text-align: center;
+}
 
 /* — vitamin D card — */
 .vitd-card {

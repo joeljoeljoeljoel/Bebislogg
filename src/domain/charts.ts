@@ -1,6 +1,6 @@
 // Data for the charts and the week table in Insikter.
 import type { Model } from './model';
-import { dygnLabel } from './days';
+import { dygnEnd, dygnLabel } from './days';
 import { type Interval, MAX_FEED_INTERVAL, feedIntervals, wakeWindows } from './forecast';
 import { type DayStats, allDygn, dayStats } from './stats';
 import { DAY, HOUR, WEEKDAYS, addDays, atTime, shortDate } from './time';
@@ -17,6 +17,12 @@ export function periodDays(m: Model, period: Period): DayStats[] {
     .reverse()
     .map((D) => dayStats(m, D));
 }
+
+/** Finished dygn the Dygnsklocka can step back through, newest first. */
+export const clockDays = (m: Model, period: Period): number[] =>
+  allDygn(m)
+    .filter((D) => dygnEnd(D) <= m.now)
+    .slice(0, period);
 
 export interface SleepMapRow {
   /** 18:00 to 18:00 the next day */

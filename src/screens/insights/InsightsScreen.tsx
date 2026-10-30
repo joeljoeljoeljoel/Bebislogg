@@ -1,6 +1,5 @@
 import { useMemo, useState } from 'react';
 import { ClipboardText } from '@phosphor-icons/react';
-import { DayClock } from '../../charts/DayClock';
 import { BarChart } from '../../charts/BarChart';
 import { Balance } from '../../charts/Balance';
 import { C, ChartCard, type LegendItem } from '../../charts/ChartCard';
@@ -23,6 +22,7 @@ import { Seg } from '../../components/Seg';
 import { useStore } from '../../state/store';
 import { useModel } from '../../state/useModel';
 import { useUI } from '../../state/ui';
+import { ClockCard } from './ClockCard';
 import { VitdCard } from './VitdCard';
 import { WeekTable } from './WeekTable';
 import './Insights.css';
@@ -86,15 +86,7 @@ export function InsightsScreen({ now }: { now: number }) {
 
       {charts && (
         <>
-          <ChartCard
-            title="Dygnsklocka"
-            question="Senaste 24 timmarna, visaren är nu"
-            legend={[{ label: 'Sömn', color: C.sleep }, ...feedLegend, { label: 'Natt', color: C.sleepDay }]}
-          >
-            <div className="big-clock">
-              <DayClock now={m.now} sleeps={m.sleeps} meals={m.meals} night={m.night} />
-            </div>
-          </ChartCard>
+          <ClockCard m={m} period={period} feedLegend={feedLegend} />
           <ChartCard
             title="Sömnkarta"
             question="Ett dygn per rad, 18–18, nyast överst"

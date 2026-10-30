@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import {
   balanceWeeks,
+  clockDays,
   feedIntervalsIn,
   hasChartData,
   periodDays,
@@ -26,6 +27,19 @@ describe('chart data', () => {
     expect(days[6].D).toBe(at('2026-10-22 07:00'));
     expect(days[6].partial).toBe(true);
     expect(periodDays(m, 28)).toHaveLength(22);
+  });
+
+  it('steps the clock back through finished dygn only', () => {
+    const m = model(regularDays('2026-10-01', 22, '2026-10-22 10:00'), '2026-10-22 10:00');
+    const days = clockDays(m, 7);
+    expect(days).toHaveLength(7);
+    expect(days[0]).toBe(at('2026-10-21 07:00'));
+    expect(days[6]).toBe(at('2026-10-15 07:00'));
+    expect(clockDays(m, 28)).toHaveLength(21);
+    // Before 07:00 the dygn that began yesterday is still going.
+    expect(clockDays(model(regularDays('2026-10-20', 2, '2026-10-22 06:00'), '2026-10-22 06:00'), 7)).toEqual([
+      at('2026-10-20 07:00'),
+    ]);
   });
 });
 

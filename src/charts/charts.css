@@ -62,3 +62,14 @@
 .dc-hub {
   fill: var(--color-text);
 }
+.dc-seam {
+  stroke: var(--color-text);
+  stroke-width: 2;
+  stroke-linecap: round;
+}
+.dc-seam-label {
+  fill: var(--color-text);
+  font-size: 11px;
+  font-weight: 600;
+  text-anchor: middle;
+}

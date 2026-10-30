@@ -3,6 +3,8 @@ import type { ReactNode } from 'react';
 export interface LegendItem {
   label: string;
   color: string;
+  /** Drawn as a short line instead of a square */
+  line?: boolean;
 }
 
 /** A card with a title, the question the chart answers, the chart and a legend. */
@@ -28,7 +30,7 @@ export function ChartCard({
         <div className="chart-legend">
           {legend.map((l) => (
             <span key={l.label}>
-              <i style={{ background: l.color }} />
+              <i style={{ background: l.color }} data-line={l.line} />
               {l.label}
             </span>
           ))}
