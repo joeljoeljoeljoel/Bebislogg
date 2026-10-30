@@ -1,6 +1,7 @@
 import type { Meal, Sleep } from '../domain/types';
 import { type NightConfig, dygnEnd } from '../domain/days';
 import { DAY, MIN, hm, pad } from '../domain/time';
+import { clockAngle as angle, dygnArc } from './clock';
 import './charts.css';
 
 interface Props {
@@ -29,10 +30,6 @@ export function DayClock({ now, sleeps, meals, night, small = false, dygn }: Pro
   const R = c - (small ? sw / 2 + 3 : sw / 2 + 24);
   const RO = R + sw / 2;
 
-  const angle = (ts: number) => {
-    const d = new Date(ts);
-    return ((d.getHours() + d.getMinutes() / 60) / 24) * 360;
-  };
   const pt = (a: number, r: number) => {
     const rad = (a * Math.PI) / 180;
     return [c + r * Math.sin(rad), c - r * Math.cos(rad)];
@@ -84,10 +81,9 @@ export function DayClock({ now, sleeps, meals, night, small = false, dygn }: Pro
         const a = Math.max(s.start, from);
         const b = Math.min(s.end ?? now, to);
         if (b - a < 2 * MIN) return null;
-        // Sleep cut off by the ends of the dygn stops at the break.
-        const a0 = !live && a === from ? seam + SEAM_GAP : angle(a);
-        const a1 = !live && b === to ? seam - SEAM_GAP : angle(b);
-        return <path key={s.id} className="dc-sleep" d={arc(a0, a1, R)} strokeWidth={sw} />;
+        const span = live ? [angle(a), angle(b)] : dygnArc(a, b, from, to, SEAM_GAP);
+        if (!span) return null;
+        return <path key={s.id} className="dc-sleep" d={arc(span[0], span[1], R)} strokeWidth={sw} />;
       })}
       {!live && <line className="dc-seam" x1={s0x} y1={s0y} x2={s1x} y2={s1y} />}
       {meals.map((m) => {
