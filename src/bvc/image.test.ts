@@ -20,6 +20,7 @@ describe('layoutBvcImage', () => {
     expect(t.filter((x) => /^(mån|tis|ons|tor|fre|lör|sön) \d+ okt$/.test(x))).toHaveLength(7);
     expect(ops.filter((o) => o.t === 'check')).toHaveLength(1);
     expect(t).not.toContain('ML');
+    expect(t).toContain('Ett dygn = 07:00–07:00, så natten räknas till dagen innan.');
   });
 
   it('adds the bottle column and average when bottles are in use', () => {

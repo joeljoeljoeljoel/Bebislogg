@@ -109,6 +109,8 @@ export function layoutBvcImage(s: BvcSummary): { width: number; height: number; 
   }
   y += 20;
 
+  text(PAD, y, `Ett dygn = ${s.dygnFrom}–${s.dygnFrom}, så natten räknas till dagen innan.`, 9.5, C.muted);
+  y += 14;
   text(PAD, y, 'Tider i timmar:minuter. Längst = längsta sammanhängande sömn på natten.', 9.5, C.muted);
   y += 14;
   text(PAD, y, `D = D-droppar. Skapad ${shortDate(s.createdAt)} ${new Date(s.createdAt).getFullYear()} med Bebislogg.`, 9.5, C.muted);

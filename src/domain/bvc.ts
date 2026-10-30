@@ -27,6 +27,8 @@ export interface BvcSummary {
   age: string;
   /** "16–22 okt" */
   periodLabel: string;
+  /** Each dygn runs from this time to the same time the next day: "07:00" */
+  dygnFrom: string;
   /** Newest first. Only finished dygn: today's would pull the averages down. */
   rows: BvcRow[];
   avg: {
@@ -78,6 +80,7 @@ export function bvcSummary(m: Model, period: BvcPeriod): BvcSummary {
     name: m.settings.name.trim() || 'Bebis',
     age: ageText(m.settings.birth, m.now),
     periodLabel: rows.length ? rangeLabel(rows.at(-1)!.D, rows[0].D) : '',
+    dygnFrom: m.settings.nightEnd,
     rows,
     avg: {
       total: mean((r) => r.total),

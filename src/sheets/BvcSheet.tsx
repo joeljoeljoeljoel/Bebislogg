@@ -57,7 +57,9 @@ export function BvcSheet({ now }: { now: number }) {
       <Seg full label="Period" options={PERIODS} value={period} onChange={setPeriod} />
 
       {s.rows.length === 0 ? (
-        <p className="bvc-empty">Sammanfattningen visas när det finns ett helt dygn, från 07:00 till 07:00.</p>
+        <p className="bvc-empty">
+          Sammanfattningen visas när det finns ett helt dygn, från {s.dygnFrom} till {s.dygnFrom}.
+        </p>
       ) : (
         <>
           <div className="bvc-who">
@@ -105,6 +107,7 @@ export function BvcSheet({ now }: { now: number }) {
             </tbody>
           </table>
           <p className="bvc-note">
+            Ett dygn = <span className="nowrap">{s.dygnFrom}–{s.dygnFrom}</span>, så natten räknas till dagen innan.
             Längst = längsta sammanhängande sömn på natten. <span className="nowrap">D = D-droppar.</span>
           </p>
 

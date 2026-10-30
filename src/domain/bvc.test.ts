@@ -75,6 +75,11 @@ describe('bvcSummary', () => {
     expect(s.name).toBe('Bebis');
     expect(s.age).toBe('6 veckor');
   });
+
+  it('tells when the dygn begins', () => {
+    expect(bvcSummary(model(events, '2026-10-22 10:00'), 7).dygnFrom).toBe('07:00');
+    expect(bvcSummary(model(events, '2026-10-22 10:00', { nightEnd: '06:30' }), 7).dygnFrom).toBe('06:30');
+  });
 });
 
 describe('rangeLabel', () => {
