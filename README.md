@@ -41,3 +41,4 @@ Datan måste då flyttas med export och import.
 2. Gå till repots **Settings → Pages** och välj **Source: GitHub Actions**.
 3. Varje push till `main` kör tester, bygger och publicerar via
    `.github/workflows/deploy.yml`.
+   .
